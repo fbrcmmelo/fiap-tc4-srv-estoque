@@ -22,7 +22,7 @@ public class EstoqueGatewayImpl implements EstoqueGateway {
     public Produto buscarProdutoPorId(String produtoId) {
         return this.estoqueRepository.findById(produtoId)
                 .map(ProdutoJpaEntity::toDomain)
-                .orElse(null);
+                .orElseThrow(() -> new IllegalArgumentException("Produto estoque não econtrado"));
     }
 
     @Override

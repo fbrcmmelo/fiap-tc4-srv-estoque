@@ -19,14 +19,14 @@ class EstoqueConsumerTest {
     @InjectMocks
     private EstoqueConsumer estoqueConsumer;
 
-    public EstoqueConsumerTest() {
+    void EstoqueBaixarEstoqueTest() {
         MockitoAnnotations.openMocks(this);
     }
 
     @Test
-    void consumer() {
+    void baixarEstoque() {
         ProdutoRequest request = new ProdutoRequest("1", 5);
-        Consumer<ProdutoRequest> consumer = estoqueConsumer.consumer();
+        Consumer<ProdutoRequest> consumer = estoqueConsumer.baixarEstoque();
 
         consumer.accept(request);
 
