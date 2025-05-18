@@ -1,41 +1,41 @@
 services:
-  estoque:
-    container_name: estoque
-    image: estoque
+  srv-estoque:
+    container_name: srv-estoque
+    image: srv-estoque
     build:
       context: .
       dockerfile: Dockerfile
     links:
-      - mongo
+      - mongodb-estoque
     depends_on:
-      - mongo
+      - mongodb-estoque
     networks:
-      - estoque-network
+      - srv-estoque-network
     volumes:
-      - estoque-data:/data/estoque
+      - srv-estoque-data:/data/srv-estoque
     environment:
       - MONGODB_USERNAME=root
       - MONGODB_PASS=rootpass
     ports:
-      - 8083:8083
+      - "8082:8082"
     restart: always
 
-  mongo:
-    image: mongo:latest  # Imagem oficial do MongoDB
-    container_name: mongo-container
+  mongodb-estoque:
+    image: mongo:latest  # Imagem oficial do mongodb-srv-estoqueDB
+    container_name: mongodb-estoque
     ports:
-      - "27019:27017"  # Mapeia a porta 27019 do host para a porta 27017 do container
+      - "27020:27017"  # Mapeia a porta 27019 do host para a porta 27017 do container
     volumes:
-      - mongo-data:/data/db  # Volume para persistir os dados do banco de dados
+      - mongodb-estoque-data:/data/db  # Volume para persistir os dados do banco de dados
     environment:
       - MONGO_INITDB_ROOT_USERNAME=root  # Defina o nome de usuário root
-      - MONGO_INITDB_ROOT_PASSWORD=rootpass  # Defina a senha para o usuário root
+      - MONGO_INITDB_ROOTs_PASSWORD=rootpass  # Defina a senha para o usuário root
     networks:
-      - estoque-network
+      - srv-estoque-network
 
 networks:
-  estoque-network:
+  srv-estoque-network:
 
 volumes:
-  mongo-data:
-  estoque-data:
+  mongodb-estoque-data:
+  srv-estoque-data:
