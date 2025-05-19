@@ -29,7 +29,7 @@ services:
       - mongodb-estoque-data:/data/db  # Volume para persistir os dados do banco de dados
     environment:
       - MONGO_INITDB_ROOT_USERNAME=root  # Defina o nome de usuário root
-      - MONGO_INITDB_ROOTs_PASSWORD=rootpass  # Defina a senha para o usuário root
+      - MONGO_INITDB_ROOT_PASSWORD=rootpass  # Defina a senha para o usuário root
     networks:
       - srv-estoque-network
 
